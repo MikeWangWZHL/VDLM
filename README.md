@@ -50,9 +50,8 @@ We propose **VDLM**, a text-based visual reasoning framework for vector graphics
     ```
 
 - Serve the model with vllm:
-    ```
-    export CUDA_VISIBLE_DEVICES=0
-    bash vllm_serve_model.sh
+    ```bash
+    CUDA_VISIBLE_DEVICES=0 ./vllm_serve_model.sh
     ```
 
 - A detailed inference demo 🚀 can be found [here](demo.ipynb).
