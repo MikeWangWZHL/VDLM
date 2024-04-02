@@ -4,7 +4,7 @@
 <p align="center">
 <a href="https://mikewangwzhl.github.io/VDLM">🌐 Homepage</a>
 •
-<a href="">📃 Paper</a>
+<a href="">📃 Paper (Coming Soon)</a>
 •
 <a href="https://huggingface.co/datasets/mikewang/PVD-160K" >🤗 Data (PVD-160k)</a>
 •
