@@ -14,7 +14,12 @@
 
 </p>
 
-We propose **VDLM**, a text-based visual reasoning framework for vector graphics. VDLM operates on text-based visual descriptions—specifically, SVG representations and learned Primal Visual Descriptions (PVD), enabling zero-shot reasoning with an off-the-shelf LLM. We demonstrate that VDLM outperforms state-of-the-art large multimodal models, such as GPT-4V, across various multimodal reasoning tasks involving vector graphics. See our [paper]() for more details.
+We observe that current *large multimodal models (LMMs)* still struggle with seemingly straightforward reasoning tasks that require precise perception of low-level visual details, such as identifying spatial relations or solving simple mazes. In particular, this failure mode persists in question-answering tasks about vector graphics—images composed purely of 2D objects and shapes.
+
+![Teaser](figures/teaser.png)
+
+To solve this challenge, we propose **Visually Descriptive Language Model (VDLM)**, a text-based visual reasoning framework for vector graphics. VDLM operates on text-based visual descriptions—specifically, SVG representations and learned Primal Visual Descriptions (PVD), enabling zero-shot reasoning with an off-the-shelf LLM. We demonstrate that VDLM outperforms state-of-the-art large multimodal models, such as GPT-4V, across various multimodal reasoning tasks involving vector graphics. See our [paper (coming soon)]() for more details.
+
 
 ![Overview](figures/overview.png)
 
