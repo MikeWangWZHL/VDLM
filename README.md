@@ -2,7 +2,7 @@
 <h1 align="center"> Text-Based Reasoning About Vector Graphics </h1>
 
 <p align="center">
-<a href="https://mikewangwzhl.github.io/vdlm.github.io/">🌐 Homepage</a>
+<a href="https://mikewangwzhl.github.io/VDLM">🌐 Homepage</a>
 •
 <a href="">📃 Paper</a>
 •
@@ -172,3 +172,9 @@ Example usage:
 
 ```bibtex
 ```
+
+
+## Website License
+This website's template is based on the [Nerfies website](https://nerfies.github.io).
+
+<a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-sa/4.0/88x31.png" /></a><br />The website is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>.

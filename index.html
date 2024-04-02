@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="description"
+        content="Visually Descriptive Language Model (VDLM): Text-based Reasoning about Vector Graphics">
+  <meta name="keywords" content="LLM, Multimodal, Vector Graphics">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Text-based Reasoning About Vector Graphics</title>
+
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
+        rel="stylesheet">
+
+  <link rel="stylesheet" href="./static/css/bulma.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
+  <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
+  <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="./static/css/index.css">
+  <link rel="icon" href="./static/images/favicon.svg">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script defer src="./static/js/fontawesome.all.min.js"></script>
+  <script src="./static/js/bulma-carousel.min.js"></script>
+  <script src="./static/js/bulma-slider.min.js"></script>
+  <script src="./static/js/index.js"></script>
+
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      var toggles = document.querySelectorAll('.toggle-section');
+      toggles.forEach(function(toggle) {
+        toggle.addEventListener('click', function() {
+          var content = document.getElementById(toggle.getAttribute('aria-controls'));
+          content.classList.toggle('is-active');
+          toggle.children[1].classList.toggle('fa-angle-down');
+          toggle.children[1].classList.toggle('fa-angle-up');
+        });
+      });
+    });
+  </script>
+
+  <style>
+    .collapse-content {
+      display: none;
+      margin-top: 10px;
+    }
+    .collapse-content.is-active {
+      display: block;
+    }
+    .toggle-section .icon.is-small {
+      transition: transform 0.3s ease;
+    }
+    .toggle-section .fa-angle-up {
+      transform: rotate(180deg);
+    }
+  </style>
+
+</head>
+<body>
+
+
+<section class="hero">
+  <div class="hero-body">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered">
+        <div class="column has-text-centered">
+          <h1 class="title is-1 publication-title">
+            <img src="static/images/favicon_vldm.png" alt="Icon" style="vertical-align: middle; height: 50px; margin-right: 10px; margin-bottom: 9px">
+            Text-based Reasoning About Vector Graphics </h1>
+          <div class="is-size-5 publication-authors">
+            <span class="author-block">
+              <a href="https://mikewangwzhl.github.io/">Zhenhailong Wang</a><sup>1</sup>,</span>
+            <span class="author-block">
+              <a href="https://stanford.edu/~joycj/">Joy Hsu</a><sup>2</sup>,</span>
+            <span class="author-block">
+              <a href="https://xwang.dev/">Xingyao Wang</a><sup>1</sup>,
+            </span>
+            <span class="author-block">
+              <a href="https://khhuang.me/">Kuan-Hao Huang</a><sup>1</sup>,
+            </span>
+            <span class="author-block">
+              <a href="https://limanling.github.io/">Manling Li</a><sup>2</sup>,
+            </span>
+            <span class="author-block">
+              <a href="https://jiajunwu.com/">Jiajun Wu</a><sup>2</sup>,
+            </span>
+            <span class="author-block">
+              <a href="https://blender.cs.illinois.edu/hengji.html">Heng Ji</a><sup>1</sup>
+            </span>
+          </div>
+
+          <div class="is-size-5 publication-authors">
+            <span class="author-block"><sup>1</sup>University of Illinois Urbana-Champaign,</span>
+            <span class="author-block"><sup>2</sup>Stanford University</span>
+          </div>
+
+          <div class="column has-text-centered">
+            <div class="publication-links">
+              <!-- PDF Link. -->
+              <!-- <span class="link-block">
+                <a href=""
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fas fa-file-pdf"></i>
+                  </span>
+                  <span>Paper</span>
+                </a>
+              </span> -->
+              <span class="link-block">
+                <a href=""
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="ai ai-arxiv"></i>
+                  </span>
+                  <span>arXiv</span>
+                </a>
+              </span>
+              <!-- Video Link. -->
+              <span class="link-block">
+                <a href="https://github.com/MikeWangWZHL/VDLM/raw/main/static/videos/vdlm_teaser_vid_w_title.mp4"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fab fa-youtube"></i>
+                  </span>
+                  <span>Video</span>
+                </a>
+              </span>
+              <!-- Code Link. -->
+              <span class="link-block">
+                <a href="https://github.com/MikeWangWZHL/VDLM"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fab fa-github"></i>
+                  </span>
+                  <span>Code</span>
+                  </a>
+              </span>
+              <!-- Model Link. -->
+              <span class="link-block">
+                <a href="https://huggingface.co/mikewang/PVD-160k-Mistral-7b"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <p style="font-size:18px">🤗</p>
+                  </span>
+                  <span>Model</span>
+                </a>
+              <!-- Dataset Link. -->
+              <span class="link-block">
+                <a href="https://huggingface.co/datasets/mikewang/PVD-160K"
+                class="external-link button is-normal is-rounded is-dark">
+                <span class="icon">
+                  <p style="font-size:18px">🤗</p>
+                </span>
+                <span>Dataset</span>
+              </a>
+              <!-- Demo link. -->
+              <span class="link-block">
+                <a href="https://github.com/MikeWangWZHL/VDLM/blob/main/demo.ipynb"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                    <p style="font-size:18px">🚀</p>
+                  </span>
+                  <span>Demo</span>
+                </a>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="hero teaser">
+  <div class="container is-max-desktop">
+    <div class="hero-body">
+      <!-- <video id="teaser" autoplay muted loop playsinline height="100%"> -->
+      <video id="teaser" autoplay controls playsinline loop height="100%">
+        <source src="./static/videos/vdlm_teaser_vid_w_title.mp4"
+                type="video/mp4">
+      </video>
+      <!-- <h2 class="subtitle has-text-centered">
+        <span class="dnerf">VDLM </span>
+      </h2> -->
+    </div>
+  </div>
+</section>
+
+
+<!-- Abstract -->
+<section class="section">
+  <div class="container is-max-desktop">
+    <!-- Abstract. -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Abstract</h2>
+        <div class="content has-text-justified">
+          <p>
+            We observe that current large multimodal models (LMMs) still struggle with seemingly straightforward reasoning tasks that require precise perception of low-level visual details, such as comparing line lengths or solving simple mazes. In particular, this failure mode persists in question-answering tasks about vector graphics—images composed purely of 2D objects and shapes. 
+          </p>
+          <p>
+            To solve this challenge, we propose <b>Visually Descriptive Language Model (VDLM)</b>, a text-based visual reasoning framework about vector graphics. VDLM leverages Scalable Vector Graphics (SVG) as a more precise visual description and first uses an off-the-shelf raster-to-SVG algorithm for encoding. As existing language models cannot understand raw SVGs in a zero-shot setting, VDLM then bridges SVG with pretrained language models using a newly introduced, intermediate symbolic representation, <b>Primal Visual Description (PVD)</b>, which comprises primitive attributes (e.g., shape, position, measurement) with their corresponding predicted values. 
+            By casting an image to a text-based representation, we can leverage the power of language models to learn alignment from SVG to visual primitives and generalize to unseen question-answering tasks.
+          </p>
+          <p>
+            Empirical results show that VDLM achieves stronger zero-shot performance compared to state-of-the-art LMMs, such as GPT-4V, in various low-level multimodal perception and reasoning tasks on vector graphics. VDLM also offers better interpretability due to its disentangled perception and reasoning processes.
+          </p>
+        </div>
+        <figure>
+          <img src="static/images/overview_nlvr.png" alt="VLDM overview." class="vldm_overvide_image"/>
+          <figcaption class="has-text-centered">
+            <b>Figure 1:</b> Comparison of existing monolithic LMM and VLDM. The example is from <a href="https://lil.nlp.cornell.edu/nlvr/">NLVR</a> dataset.
+          </figcaption>
+        </figure>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered">
+      <div class="column is-full-width">
+        <h2 class="title is-3">Method</h2>
+        <h3 class="title is-4">Encoding Images into SVG with Rule-based Algorithms</h3>
+        <div class="content has-text-justified">
+          <p>
+            We leverage an off-the-shelf rule-based image-to-SVG parsing algorithm, <a href="https://github.com/visioncortex/vtracer">VTracer</a>, for converting any image into SVG without learning. This enables us to obtain an unbiased initial description of the input vector graphic images. However, we observe two key challenges when working with raw SVG representation. First, off-the-shelf LLMs, e.g., GPT-4, have limited zero-shot reasoning ability on SVG representation. Second, fine-tuning on task-specific ⟨SVG, question, answer⟩ pairs limits generalization to unseen tasks and domains. We discuss our approach for extracting intermediate representations below.
+          </p>
+        </div>
+        <h3 class="title is-4">Learning Alignment of SVG to Primal Visual Description with Language Models</h3>
+        <div class="content has-text-justified">
+          <figure id="pvd_ontology_img">
+            <img src="static/images/pvd_ontology.png" alt="PVD ontology." class="pvd_ontology"/>
+            <figcaption><b>Figure 2:</b> Ontology of the PVD primitives.</figcaption>
+          </figure>
+          <p>
+            We propose <b>Primal Visual Description (PVD)</b>, a higher level scene representation that bridges low-level SVG paths to more structured primitives required for reasoning. PVD is a text-based visual description that consists of a set of primitive geometry objects, e.g., circles, line segments. Each PVD element contains the primitives' attributes (e.g., color, shape, position, size) with corresponding predicted values (e.g., blue, circle, pixel coordinates of the center, length of the radius). See <a href="#pvd_ontology_img">Figure 2</a> for the ontology we defined.
+          </p>
+          <figure id="svg_to_pvd_model_img">
+            <img src="static/images/svg-to-pvd-model.png" alt="SVG-to-PVD model." class="svg_to_pvd_model"/>
+            <figcaption><b>Figure 3:</b> An example of the input and output of the SVG-to-PVD model.
+          </figure>
+          <p>
+            We then learn a SVG-to-PVD model by fine-tuning a pretrained language model (<a href="https://huggingface.co/mistralai/Mistral-7B-v0.1">Mistral-7B</a>). To obtain the training data, we develop a data generator leveraging <a href="https://pillow.readthedocs.io/en/stable/reference/ImageDraw.html">PIL.ImageDraw</a> and <a href="https://github.com/visioncortex/vtracer">VTracer</a>, which creates a large-scale ⟨SVG, PVD⟩ paired dataset without any human annotation. The <a href="https://huggingface.co/datasets/mikewang/PVD-160K">dataset</a> contains 160K instruction following instances on predicting PVD from SVG on randomly generated primitives. See <a href="#svg_to_pvd_model_img">Figure 3</a> above on an input/output example. 
+            
+            During inference, as shown in the <a href="#teaser">teaser video</a>, we first decompose the input image into individual SVG paths and then feed them into the SVG-to-PVD model to generate the visual descriptions.
+          </p>
+        </div>
+        <h3 class="title is-4">Reasoning about Primal Visual Description with LLMs</h3>
+        <div class="content has-text-justified">
+          <p>
+            Our visual perception modules, as aformentioned, generate a fully text-based visual description of the input vector graphics. For each downstream task, we then input the perception result into the
+            prompt along with the task-specific instructions and feed it to an off-the-shelf LLM, e.g., <a href="https://openai.com/research/gpt-4">GPT-4</a> for reasoning. An example of the full input prompt and GPT-4 response of the 2×2 Maze Solving example in the <a href="#teaser">teaser video</a> can be viewed below.
+          </p>
+        </div>
+        <div class="collapsible-section">
+          <button class="button is-fullwidth toggle-section" aria-controls="mazeExample1">
+            <span>View Full Reasoning Results of the 2×2 Maze Solving Example</span>
+            <span class="icon is-small">
+              <i class="fas fa-angle-down" aria-hidden="true"></i>
+            </span>
+          </button>
+          <div id="mazeExample1" class="collapse-content">
+            <figure class="image">
+              <img src="static/images/maze_example_step1.png" alt="Maze Example Step 1" style="width: 100%;">
+            </figure>
+            <br>
+            <figure class="image">
+              <img src="static/images/maze_example_step2.png" alt="Maze Example Step 2" style="width: 100%;">
+            </figure>
+            <br>
+            <figure class="image">
+              <img src="static/images/maze_example_step3.png" alt="Maze Example Step 3" style="width: 100%;">
+            </figure>
+          </div>
+ 
+
+  </div>
+</section>
+
+
+
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered">
+      <div class="column is-full-width">
+        <h2 class="title is-3">Performance</h2>
+        <h3 class="title is-4">Tasks</h3>
+        <div class="content has-text-justified">
+          <figure id="downstream_tasks_img">
+            <img src="static/images/downstream_tasks.png" alt="downstream tasks." class="downstream_tasks"/>
+            <figcaption><b>Figure 4:</b> Our full evaluation benchmark, composed of 9 zero-shot tasks on vector graphics.</figcaption>
+          </figure>
+          <p>
+            We construct an evaluation benchmark that comprises 9 tasks which cover important aspects of low-level visual perception and vision-language reasoning, including measurements, spatial relations, counting, logical reasoning, and complex reasoning problems. See <a href="#downstream_tasks_img">Figure 4</a> for the task examples.
+          </p>
+        <h3 class="title is-4">Results</h3>
+        <div class="content has-text-justified">
+          <figure id="results_img">
+            <img src="static/images/main_results.png" alt="results." class="results"/>
+            <figcaption><b>Figure 5:</b> Zero-shot accuracy on 9 tasks.</figcaption>
+          </figure>
+          <p>
+            VLDM outperforms both open- and closed-source state-of-the-art Large Multimodal Models, including <a href="https://arxiv.org/abs/2310.03744">LLaVA-1.5</a> and <a href="https://openai.com/research/gpt-4v-system-card">GPT-4V</a>, demonstrating the effectiveness of its text-based, disentangled framework in achieving precise low-level perception and reasoning.
+            VLDM also outperforms previous visual programming methods, i.e., <a href="https://viper.cs.columbia.edu/">ViperGPT</a>, indicating that these models are limited by the capability of the vision-language processors, such as <a href="https://github.com/microsoft/GLIP">GLIP</a> and <a href="https://arxiv.org/abs/2301.12597">BLIP2</a>, especially in processing low-level primitives such as angles and shapes.
+          </p>
+  </div>
+</section>
+
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered">
+      <div class="column is-full-width">
+        <h2 class="title is-3">Resources</h2>
+
+        <p>
+          💻 <b>Code:</b> <a href="https://github.com/MikeWangWZHL/VDLM">VDLM Code</a>
+        </p>
+
+        <p>
+          💻 <b>Demo (Jupyter Notebook):</b> <a href="https://github.com/MikeWangWZHL/VDLM/blob/main/demo.ipynb">VDLM Demo</a>
+        </p>
+
+        <p>
+          🤗 <b>Pretrained SVG-to-PVD Model:</b> <a href="https://huggingface.co/mikewang/PVD-160k-Mistral-7b">PVD-160k-Mistral-7b</a>
+        </p>
+        
+        <p>
+          🤗 <b>SVG-to-PVD Dataset:</b> <a href="https://huggingface.co/datasets/mikewang/PVD-160K">PVD-160K</a>
+        </p>
+  </div>
+</section>
+
+
+
+<section class="section" id="BibTeX">
+  <div class="container is-max-desktop content">
+    <h2 class="title">BibTeX</h2>
+    <pre><code>
+      Coming soon...
+    </code></pre>
+  </div>
+</section>
+
+
+<footer class="footer">
+  <div class="container">
+    <!-- <div class="content has-text-centered">
+      <a class="icon-link"
+      href="">
+      <i class="fas fa-file-pdf"></i>
+    </a>
+    <a class="icon-link" href="https://github.com/mikewangwzhl" class="external-link" disabled>
+      <i class="fab fa-github"></i>
+    </a>
+  </div> -->
+  <div class="content has-text-centered">
+    <div class="columns is-centered">
+      <div class="column is-8">
+        <div class="content">
+          <!-- <p>
+            This website is licensed under a <a rel="license"
+                                                href="http://creativecommons.org/licenses/by-sa/4.0/">Creative
+            Commons Attribution-ShareAlike 4.0 International License</a>.
+          </p> -->
+          <p>
+            This website's template is borrowed from <a
+              href="https://github.com/nerfies/nerfies.github.io">nerfies</a>. We thank the authors for open-sourcing their code.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
