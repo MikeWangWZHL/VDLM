@@ -1,0 +1,41 @@
+{
+    "path_0.svg": {
+        "input": [
+            {
+                "role": "system",
+                "content": "You are a helpful assistant specially trained in understanding, interpreting, and responding to questions about SVG (Scalable Vector Graphics) code."
+            },
+            {
+                "role": "user",
+                "content": "Given an image in SVG format as follows:\n```\n<?xml version=\"1.0\" ?>\n<svg xmlns=\"http://www.w3.org/2000/svg\" version=\"1.1\" width=\"336\" height=\"336\">\n<path d=\"M0,0 L336,0 L336,336 L0,336 Z \" fill=\"#FEFEFE\" transform=\"translate(0,0)\"/>\n</svg>\n```\nDescribe the visual content of the image in a JSON format."
+            }
+        ],
+        "response": "{\"type\": \"rectangle\", \"vertices\": [[0.0, 336.0], [0.0, 0.0], [336.0, 0.0], [336.0, 336.0]], \"color\": [254, 254, 254], \"style\": \"filled shape\"} \n"
+    },
+    "path_1.svg": {
+        "input": [
+            {
+                "role": "system",
+                "content": "You are a helpful assistant specially trained in understanding, interpreting, and responding to questions about SVG (Scalable Vector Graphics) code."
+            },
+            {
+                "role": "user",
+                "content": "Given an image in SVG format as follows:\n```\n<?xml version=\"1.0\" ?>\n<svg xmlns=\"http://www.w3.org/2000/svg\" version=\"1.1\" width=\"336\" height=\"336\">\n<path d=\"M0,0 L6,1 L85,1 L90,0 L93,2 L92,8 L86,9 L85,6 L6,6 L6,8 L0,9 L-2,6 L-1,1 Z \" fill=\"#030303\" transform=\"translate(200,175)\"/>\n</svg>\n```\nDescribe the visual content of the image in a JSON format."
+            }
+        ],
+        "response": "{\"type\": \"line_segment\", \"vertices\": [[202, 179], [289, 179]], \"color\": [3, 3, 3], \"line_width\": 5} \n"
+    },
+    "path_2.svg": {
+        "input": [
+            {
+                "role": "system",
+                "content": "You are a helpful assistant specially trained in understanding, interpreting, and responding to questions about SVG (Scalable Vector Graphics) code."
+            },
+            {
+                "role": "user",
+                "content": "Given an image in SVG format as follows:\n```\n<?xml version=\"1.0\" ?>\n<svg xmlns=\"http://www.w3.org/2000/svg\" version=\"1.1\" width=\"336\" height=\"336\">\n<path d=\"M0,0 L6,1 L7,6 L6,8 L4,8 L4,39 L7,40 L6,46 L0,47 L-2,44 L-1,39 L-1,8 L-2,2 Z \" fill=\"#060606\" transform=\"translate(58,125)\"/>\n</svg>\n```\nDescribe the visual content of the image in a JSON format."
+            }
+        ],
+        "response": "{\"type\": \"line_segment\", \"vertices\": [[60, 167], [60, 129]], \"color\": [6, 6, 6], \"line_width\": 4} \n"
+    }
+}

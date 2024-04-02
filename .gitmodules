@@ -1,0 +1,9 @@
+[submodule "third_party/LLaVA"]
+	path = third_party/LLaVA
+	url = https://github.com/haotian-liu/LLaVA.git
+[submodule "third_party/code-act"]
+	path = third_party/code-act
+	url = https://github.com/xingyaoww/code-act.git
+[submodule "third_party/viper"]
+	path = third_party/viper
+	url = https://github.com/MikeWangWZHL/viper.git

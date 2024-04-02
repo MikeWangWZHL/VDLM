@@ -1,0 +1,9 @@
+The following JSON contains an approximated perception of a 2d scene. Each object (potentially including the background) is represented by a list of geometric shapes. If the object contain multiple shapes, it is a composite object. The (x, y) coordinates are in pixels, and (0, 0) is the top-left corner of the image.
+
+--- perception ---
+{'object_0': [{'type': 'rectangle', 'vertices': [[0.0, 336.0], [0.0, 0.0], [336.0, 0.0], [336.0, 336.0]], 'color': [254, 254, 254], 'style': 'filled shape'}], 'object_1': [{'type': 'line_segment', 'vertices': [[202, 179], [289, 179]], 'color': [3, 3, 3], 'line_width': 5}], 'object_2': [{'type': 'line_segment', 'vertices': [[60, 167], [60, 129]], 'color': [6, 6, 6], 'line_width': 4}]}
+------
+
+Note that perception can be noisy. Make educated guesses if necessary. 
+Think step by step and answer the following question:
+How many line segments are there in the image? What's the total length of all the line segments in the image?
