@@ -109,12 +109,12 @@
                 </a>
               </span> -->
               <span class="link-block">
-                <a href=""
+                <a href="https://arxiv.org/abs/2404.06479"
                    class="external-link button is-normal is-rounded is-dark">
                   <span class="icon">
                       <i class="ai ai-arxiv"></i>
                   </span>
-                  <span>arXiv (Coming Soon)</span>
+                  <span>arXiv</span>
                 </a>
               </span>
               <!-- Video Link. -->
@@ -257,7 +257,7 @@
             <figcaption><b>Figure 3:</b> An example of the input and output of the SVG-to-PVD model.
           </figure>
           <p>
-            Since SVG is text-based, we can effectively learn a SVG-to-PVD model by fine-tuning a pretrained language model (<a href="https://huggingface.co/mistralai/Mistral-7B-v0.1">Mistral-7B</a>). To obtain the training data, we develop a data generator leveraging <a href="https://pillow.readthedocs.io/en/stable/reference/ImageDraw.html">PIL.ImageDraw</a> and <a href="https://github.com/visioncortex/vtracer">VTracer</a>, which creates a large-scale ⟨SVG, PVD⟩ paired dataset without any human annotation. 
+            Since SVG is text-based, we can effectively learn a SVG-to-PVD model by fine-tuning a pretrained language model (<a href="https://huggingface.co/mistralai/Mistral-7B-v0.1">Mistral-7B-v0.1</a>). To obtain the training data, we develop a data generator leveraging <a href="https://pillow.readthedocs.io/en/stable/reference/ImageDraw.html">PIL.ImageDraw</a> and <a href="https://github.com/visioncortex/vtracer">VTracer</a>, which creates a large-scale ⟨SVG, PVD⟩ paired dataset without any human annotation. 
             <!-- The <a href="https://huggingface.co/datasets/mikewang/PVD-160K">dataset</a> contains 160K instruction following instances on predicting PVD from SVG on randomly generated primitives.  -->
             See <a href="#svg_to_pvd_model_img">Figure 3</a> above on an input/output example. 
             
@@ -338,7 +338,7 @@
         </p>
 
         <p>
-          🚀 <b>Demo (Jupyter Notebook):</b> <a href="https://github.com/MikeWangWZHL/VDLM/blob/main/demo.ipynb">VDLM Demo</a>
+          🍉 <b>Demo (Jupyter Notebook):</b> <a href="https://github.com/MikeWangWZHL/VDLM/blob/main/demo.ipynb">VDLM Demo</a>
         </p>
 
         <p>
@@ -357,7 +357,14 @@
   <div class="container is-max-desktop content">
     <h2 class="title">BibTeX</h2>
     <pre><code>
-      Coming soon...
+      @misc{wang2024textbased,
+        title={Text-Based Reasoning About Vector Graphics}, 
+        author={Zhenhailong Wang and Joy Hsu and Xingyao Wang and Kuan-Hao Huang and Manling Li and Jiajun Wu and Heng Ji},
+        year={2024},
+        eprint={2404.06479},
+        archivePrefix={arXiv},
+        primaryClass={cs.CL}
+      }
     </code></pre>
   </div>
 </section>
