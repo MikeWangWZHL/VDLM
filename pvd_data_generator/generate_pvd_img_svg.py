@@ -408,7 +408,7 @@ def check_if_duplicate(obj, reference_objs):
                 if sorted(ref_obj["vertices"]) == sorted(obj["vertices"]):
                     return True
             else:
-                raise ValueError(f"object type {ref_obj["type"]} not implemented")
+                raise ValueError(f"object type {ref_obj['type']} not implemented")
     return False
 
 # Define a function to generate random shapes with annotations
