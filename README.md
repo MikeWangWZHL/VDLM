@@ -4,7 +4,7 @@
 <p align="center">
 <a href="https://mikewangwzhl.github.io/VDLM">🌐 Homepage</a>
 •
-<a href="">📃 Paper (Coming Soon)</a>
+<a href="https://arxiv.org/abs/2404.06479">📃 Paper</a>
 •
 <a href="https://huggingface.co/datasets/mikewang/PVD-160K" >🤗 Data (PVD-160k)</a>
 •
@@ -18,7 +18,7 @@ We observe that current *large multimodal models (LMMs)* still struggle with see
 
 ![Teaser](figures/teaser.png)
 
-To solve this challenge, we propose **Visually Descriptive Language Model (VDLM)**, a text-based visual reasoning framework for vector graphics. VDLM operates on text-based visual descriptions—specifically, SVG representations and learned Primal Visual Descriptions (PVD), enabling zero-shot reasoning with an off-the-shelf LLM. We demonstrate that VDLM outperforms state-of-the-art large multimodal models, such as GPT-4V, across various multimodal reasoning tasks involving vector graphics. See our [paper (coming soon)]() for more details.
+To solve this challenge, we propose **Visually Descriptive Language Model (VDLM)**, a text-based visual reasoning framework for vector graphics. VDLM operates on text-based visual descriptions—specifically, SVG representations and learned Primal Visual Descriptions (PVD), enabling zero-shot reasoning with an off-the-shelf LLM. We demonstrate that VDLM outperforms state-of-the-art large multimodal models, such as GPT-4V, across various multimodal reasoning tasks involving vector graphics. See our [paper](https://arxiv.org/abs/2404.06479) for more details.
 
 
 ![Overview](figures/overview.png)
@@ -46,7 +46,7 @@ To solve this challenge, we propose **Visually Descriptive Language Model (VDLM)
 
 ## 🚀 Quick Start (Inference Demo)
 
-- Download the pretrained SVG-to-PVD model (a finetuned Mistral-7B) from [here](https://huggingface.co/mikewang/PVD-160k-Mistral-7b). Make sure it is stored at `data/ckpts/PVD-160k-Mistral-7b`
+- Download the pretrained SVG-to-PVD model from [here](https://huggingface.co/mikewang/PVD-160k-Mistral-7b). It is an LLM finetuned from [Mistral-7B-v0.1](https://huggingface.co/mistralai/Mistral-7B-v0.1). Make sure it is stored at `data/ckpts/PVD-160k-Mistral-7b`
     ```
     mkdir -p data/ckpts
     cd data/ckpts
@@ -176,6 +176,14 @@ Example usage:
 ## 📚 Citation
 
 ```bibtex
+@misc{wang2024textbased,
+      title={Text-Based Reasoning About Vector Graphics}, 
+      author={Zhenhailong Wang and Joy Hsu and Xingyao Wang and Kuan-Hao Huang and Manling Li and Jiajun Wu and Heng Ji},
+      year={2024},
+      eprint={2404.06479},
+      archivePrefix={arXiv},
+      primaryClass={cs.CL}
+}
 ```
 
 

@@ -67,7 +67,7 @@
       <div class="columns is-centered">
         <div class="column has-text-centered">
           <h1 class="title is-1 publication-title">
-            <img src="static/images/favicon_vldm.png" alt="Icon" style="vertical-align: middle; height: 50px; margin-right: 10px; margin-bottom: 9px">
+            <img src="static/images/favicon_vdlm.png" alt="Icon" style="vertical-align: middle; height: 50px; margin-right: 10px; margin-bottom: 9px">
             Text-based Reasoning About Vector Graphics </h1>
           <div class="is-size-5 publication-authors">
             <span class="author-block">
@@ -109,24 +109,24 @@
                 </a>
               </span> -->
               <span class="link-block">
-                <a href=""
+                <a href="https://arxiv.org/abs/2404.06479"
                    class="external-link button is-normal is-rounded is-dark">
                   <span class="icon">
                       <i class="ai ai-arxiv"></i>
                   </span>
-                  <span>arXiv (Coming Soon)</span>
+                  <span>arXiv</span>
                 </a>
               </span>
               <!-- Video Link. -->
-              <span class="link-block">
-                <a href="https://github.com/MikeWangWZHL/VDLM/raw/main/static/videos/vdlm_teaser_vid_w_title.mp4"
+              <!-- <span class="link-block">
+                <a href="https://github.com/MikeWangWZHL/VDLM/raw/main/static/videos/vdlm_teaser_vid.mp4"
                    class="external-link button is-normal is-rounded is-dark">
                   <span class="icon">
                       <i class="fab fa-youtube"></i>
                   </span>
                   <span>Video</span>
                 </a>
-              </span>
+              </span> -->
               <!-- Code Link. -->
               <span class="link-block">
                 <a href="https://github.com/MikeWangWZHL/VDLM"
@@ -177,7 +177,7 @@
   <div class="container is-max-desktop">
     <div class="hero-body">
       <video id="teaser" autoplay muted controls playsinline loop height="100%">
-        <source src="./static/videos/vdlm_teaser_vid_w_title.mp4"
+        <source src="./static/videos/vdlm_teaser_vid.mp4"
                 type="video/mp4">
       </video>
       <!-- <h2 class="subtitle has-text-centered">
@@ -197,20 +197,23 @@
         <h2 class="title is-3">Abstract</h2>
         <div class="content has-text-justified">
           <p>
-            We observe that current large multimodal models (LMMs) still struggle with seemingly straightforward reasoning tasks that require precise perception of low-level visual details, such as comparing line lengths or solving simple mazes. In particular, this failure mode persists in question-answering tasks about vector graphics—images composed purely of 2D objects and shapes. 
+            <b>Problem:</b> Current large multimodal models (LMMs) struggle with seemingly straightforward reasoning tasks that require <i>precise perception</i> of low-level visual details, such as comparing the lengths of lines or navigating simple mazes. In particular, this failure mode persists in tasks about vector graphics—images composed purely of 2D objects and shapes. 
           </p>
           <p>
-            To solve this challenge, we propose <b>Visually Descriptive Language Model (VDLM)</b>, a text-based visual reasoning framework about vector graphics. VDLM leverages Scalable Vector Graphics (SVG) as a more precise visual description and first uses an off-the-shelf raster-to-SVG algorithm for encoding. As existing language models cannot understand raw SVGs in a zero-shot setting, VDLM then bridges SVG with pretrained language models using a newly introduced, intermediate symbolic representation, <b>Primal Visual Description (PVD)</b>, which comprises primitive attributes (e.g., shape, position, measurement) with their corresponding predicted values. 
-            By casting an image to a text-based representation, we can leverage the power of language models to learn alignment from SVG to visual primitives and generalize to unseen question-answering tasks.
+            <b>Method:</b> To solve this challenge, we propose <b>Visually Descriptive Language Model (VDLM), a <i>text</i>-based <i>visual</i> reasoning framework about vector graphics</b>. VDLM leverages Scalable Vector Graphics (SVG) as a more precise initial perception of visual inputs.
+            <!-- and first uses an off-the-shelf raster-to-SVG algorithm for encoding.  -->
+            As existing language models cannot understand raw SVGs in a zero-shot setting, VDLM then bridges SVG with pretrained language models using a newly introduced, intermediate symbolic representation, <b>Primal Visual Description (PVD)</b>, which comprises primitive attributes (e.g., shape, position, measurement).
+            <!-- with their corresponding predicted values.  -->
+            By casting an image to a text-based representation, we can leverage the power of language models to learn alignment from SVG to visual primitives and generalize to unseen tasks and domains.
           </p>
           <p>
-            Empirical results show that VDLM achieves stronger zero-shot performance compared to state-of-the-art LMMs, such as GPT-4V, in various low-level multimodal perception and reasoning tasks on vector graphics. VDLM also offers better interpretability due to its disentangled perception and reasoning processes.
+            <b>Performance:</b> VDLM achieves stronger zero-shot performance compared to state-of-the-art LMMs, such as GPT-4V, in various low-level multimodal perception and reasoning tasks on vector graphics. VDLM also offers better interpretability due to its disentangled perception and reasoning processes.
           </p>
         </div>
         <figure>
-          <img src="static/images/overview_nlvr.png" alt="VLDM overview." class="vldm_overvide_image"/>
+          <img src="static/images/teaser.png" alt="VDLM overview." class="VDLM_overview_image"/>
           <figcaption class="has-text-centered">
-            <b>Figure 1:</b> Comparison of existing monolithic LMM and VLDM. The example is from <a href="https://lil.nlp.cornell.edu/nlvr/">NLVR</a> dataset.
+            <b>Figure 1:</b> Comparison of existing monolithic LMM and VDLM. The example is from <a href="https://lil.nlp.cornell.edu/nlvr/">NLVR</a> dataset.
           </figcaption>
         </figure>
       </div>
@@ -224,36 +227,49 @@
     <div class="columns is-centered">
       <div class="column is-full-width">
         <h2 class="title is-3">Method</h2>
-        <h3 class="title is-4">Encoding Images into SVG with Rule-based Algorithms</h3>
+          <video id="method" muted controls playsinline loop height="100%">
+          <source src="./static/videos/vdlm_method_vid_maze.mp4"
+                  type="video/mp4">
+                </video>
+          <h2 class="subtitle has-text-centered">
+            VDLM zero-shot inference example on 2×2 Maze Solving task.
+          </h2>
+        <br>
+        <br>
+        <h3 class="title is-4">Encoding images into SVG to preserve low-level details</h3>
         <div class="content has-text-justified">
           <p>
-            We leverage an off-the-shelf rule-based image-to-SVG parsing algorithm, <a href="https://github.com/visioncortex/vtracer">VTracer</a>, for converting any image into SVG without learning. This enables us to obtain an unbiased initial description of the input vector graphic images. However, we observe two key challenges when working with raw SVG representation. First, off-the-shelf LLMs, e.g., GPT-4, have limited zero-shot reasoning ability on SVG representation. Second, fine-tuning on task-specific ⟨SVG, question, answer⟩ pairs limits generalization to unseen tasks and domains. We discuss our approach for extracting intermediate representations below.
+            We leverage an off-the-shelf rule-based image-to-SVG parsing algorithm, <a href="https://github.com/visioncortex/vtracer">VTracer</a>, for converting any image into SVG without learning. This enables us to obtain an accurate initial perception of the input vector graphic images. However, we observe two key challenges when working with raw SVG representation. First, off-the-shelf LLMs, e.g., GPT-4, have limited zero-shot reasoning ability on SVG representation. Second, fine-tuning on task-specific ⟨SVG, question, answer⟩ pairs limits generalization to unseen tasks and domains. We discuss our approach for extracting intermediate representations below.
           </p>
         </div>
-        <h3 class="title is-4">Learning Alignment of SVG to Primal Visual Description with Language Models</h3>
+        <!-- <h3 class="title is-4">Learning Alignment of SVG to Primal Visual Description with Language Models</h3> -->
+        <h3 class="title is-4">Learning intermediate symbolic representation to enable text-based reasoning</h3>
         <div class="content has-text-justified">
           <figure id="pvd_ontology_img">
             <img src="static/images/pvd_ontology.png" alt="PVD ontology." class="pvd_ontology"/>
             <figcaption><b>Figure 2:</b> Ontology of the PVD primitives.</figcaption>
           </figure>
           <p>
-            We propose <b>Primal Visual Description (PVD)</b>, a higher level scene representation that bridges low-level SVG paths to more structured primitives required for reasoning. PVD is a text-based visual description that consists of a set of primitive geometry objects, e.g., circles, line segments. Each PVD element contains the primitives' attributes (e.g., color, shape, position, size) with corresponding predicted values (e.g., blue, circle, pixel coordinates of the center, length of the radius). See <a href="#pvd_ontology_img">Figure 2</a> for the ontology we defined.
+            We propose <b>Primal Visual Description (PVD)</b>, a higher level scene representation that bridges low-level SVG paths to more structured primitives required for reasoning. PVD is a text-based visual description that consists of a set of primitive geometry objects, e.g., circles, line segments. Each PVD element contains the primitives' attributes (e.g., color, shape, position, size) with corresponding predicted values (e.g., blue, circle, pixel coordinates of the center, length of the radius). See <a href="#pvd_ontology_img">Figure 2</a> for the ontology we defined. Notably, unlike raw SVG, <b>PVD is directly interpretable by state-of-the-art LLMs</b>, enabling zero-shot reasoning on downstream tasks.
           </p>
           <figure id="svg_to_pvd_model_img">
             <img src="static/images/svg-to-pvd-model.png" alt="SVG-to-PVD model." class="svg_to_pvd_model"/>
             <figcaption><b>Figure 3:</b> An example of the input and output of the SVG-to-PVD model.
           </figure>
           <p>
-            We then learn a SVG-to-PVD model by fine-tuning a pretrained language model (<a href="https://huggingface.co/mistralai/Mistral-7B-v0.1">Mistral-7B</a>). To obtain the training data, we develop a data generator leveraging <a href="https://pillow.readthedocs.io/en/stable/reference/ImageDraw.html">PIL.ImageDraw</a> and <a href="https://github.com/visioncortex/vtracer">VTracer</a>, which creates a large-scale ⟨SVG, PVD⟩ paired dataset without any human annotation. The <a href="https://huggingface.co/datasets/mikewang/PVD-160K">dataset</a> contains 160K instruction following instances on predicting PVD from SVG on randomly generated primitives. See <a href="#svg_to_pvd_model_img">Figure 3</a> above on an input/output example. 
+            Since SVG is text-based, we can effectively learn a SVG-to-PVD model by fine-tuning a pretrained language model (<a href="https://huggingface.co/mistralai/Mistral-7B-v0.1">Mistral-7B-v0.1</a>). To obtain the training data, we develop a data generator leveraging <a href="https://pillow.readthedocs.io/en/stable/reference/ImageDraw.html">PIL.ImageDraw</a> and <a href="https://github.com/visioncortex/vtracer">VTracer</a>, which creates a large-scale ⟨SVG, PVD⟩ paired dataset without any human annotation. 
+            <!-- The <a href="https://huggingface.co/datasets/mikewang/PVD-160K">dataset</a> contains 160K instruction following instances on predicting PVD from SVG on randomly generated primitives.  -->
+            See <a href="#svg_to_pvd_model_img">Figure 3</a> above on an input/output example. 
             
-            During inference, as shown in the <a href="#teaser">teaser video</a>, we first decompose the input image into individual SVG paths and then feed them into the SVG-to-PVD model to generate the visual descriptions.
+            During inference, as shown in the <a href="#method">Maze Solving example video</a>, we first decompose the input image into single SVG paths and then individually feed them into the SVG-to-PVD model.
           </p>
         </div>
-        <h3 class="title is-4">Reasoning about Primal Visual Description with LLMs</h3>
+        <h3 class="title is-4">Zero-shot task generalization with off-the-shelf LLMs</h3>
         <div class="content has-text-justified">
           <p>
-            Our visual perception modules, as aformentioned, generate a fully text-based visual description of the input vector graphics. For each downstream task, we then input the perception result into the
-            prompt along with the task-specific instructions and feed it to an off-the-shelf LLM, e.g., <a href="https://openai.com/research/gpt-4">GPT-4</a> for reasoning. An example of the full input prompt and GPT-4 response of the 2×2 Maze Solving example in the <a href="#teaser">teaser video</a> can be viewed below.
+            Given an <i>unseen</i> task, we first use our visual perception modules, as aformentioned, to generate a fully text-based visual description of the input vector graphics. 
+            We then leverage an off-the-shelf LLM, e.g., <a href="https://openai.com/research/gpt-4">GPT-4</a>, for interpreting the perception results and reasoning about task queries.
+            An example of the full input prompt and GPT-4 response of the 2×2 Maze Solving example can be viewed below.
           </p>
         </div>
         <div class="collapsible-section">
@@ -304,8 +320,8 @@
             <figcaption><b>Figure 5:</b> Zero-shot accuracy on 9 tasks.</figcaption>
           </figure>
           <p>
-            VLDM outperforms both open- and closed-source state-of-the-art Large Multimodal Models, including <a href="https://arxiv.org/abs/2310.03744">LLaVA-1.5</a> and <a href="https://openai.com/research/gpt-4v-system-card">GPT-4V</a>, demonstrating the effectiveness of its text-based, disentangled framework in achieving precise low-level perception and reasoning.
-            VLDM also outperforms previous visual programming methods, i.e., <a href="https://viper.cs.columbia.edu/">ViperGPT</a>, indicating that these models are limited by the capability of the vision-language processors, such as <a href="https://github.com/microsoft/GLIP">GLIP</a> and <a href="https://arxiv.org/abs/2301.12597">BLIP2</a>, especially in processing low-level primitives such as angles and shapes.
+            VDLM outperforms both open- and closed-source state-of-the-art Large Multimodal Models, including <a href="https://arxiv.org/abs/2310.03744">LLaVA-1.5</a> and <a href="https://openai.com/research/gpt-4v-system-card">GPT-4V</a>, demonstrating the effectiveness of its text-based, disentangled framework in achieving precise low-level perception and reasoning.
+            VDLM also outperforms previous visual programming methods, i.e., <a href="https://viper.cs.columbia.edu/">ViperGPT</a>, indicating that these models are limited by the capability of the vision-language processors, such as <a href="https://github.com/microsoft/GLIP">GLIP</a> and <a href="https://arxiv.org/abs/2301.12597">BLIP2</a>, especially in processing low-level primitives such as angles and shapes.
           </p>
   </div>
 </section>
@@ -322,7 +338,7 @@
         </p>
 
         <p>
-          🚀 <b>Demo (Jupyter Notebook):</b> <a href="https://github.com/MikeWangWZHL/VDLM/blob/main/demo.ipynb">VDLM Demo</a>
+          🍉 <b>Demo (Jupyter Notebook):</b> <a href="https://github.com/MikeWangWZHL/VDLM/blob/main/demo.ipynb">VDLM Demo</a>
         </p>
 
         <p>
@@ -341,7 +357,14 @@
   <div class="container is-max-desktop content">
     <h2 class="title">BibTeX</h2>
     <pre><code>
-      Coming soon...
+      @misc{wang2024textbased,
+        title={Text-Based Reasoning About Vector Graphics}, 
+        author={Zhenhailong Wang and Joy Hsu and Xingyao Wang and Kuan-Hao Huang and Manling Li and Jiajun Wu and Heng Ji},
+        year={2024},
+        eprint={2404.06479},
+        archivePrefix={arXiv},
+        primaryClass={cs.CL}
+      }
     </code></pre>
   </div>
 </section>
