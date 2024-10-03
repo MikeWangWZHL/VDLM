@@ -3,10 +3,10 @@
 <head>
   <meta charset="utf-8">
   <meta name="description"
-        content="Visually Descriptive Language Model (VDLM): Text-based Reasoning about Vector Graphics">
+        content="Visually Descriptive Language Model (VDLM)">
   <meta name="keywords" content="LLM, Multimodal, Vector Graphics">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Text-based Reasoning About Vector Graphics</title>
+  <title>Visually Descriptive Language Model for Vector Graphics Reasoning</title>
 
   <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
         rel="stylesheet">
@@ -68,7 +68,7 @@
         <div class="column has-text-centered">
           <h1 class="title is-1 publication-title">
             <img src="static/images/favicon_vdlm.png" alt="Icon" style="vertical-align: middle; height: 50px; margin-right: 10px; margin-bottom: 9px">
-            Text-based Reasoning About Vector Graphics </h1>
+            Visually Descriptive Language Model for Vector Graphics Reasoning </h1>
           <div class="is-size-5 publication-authors">
             <span class="author-block">
               <a href="https://mikewangwzhl.github.io/">Zhenhailong Wang</a><sup>1</sup>,</span>
@@ -197,17 +197,17 @@
         <h2 class="title is-3">Abstract</h2>
         <div class="content has-text-justified">
           <p>
-            <b>Problem:</b> Current large multimodal models (LMMs) struggle with seemingly straightforward reasoning tasks that require <i>precise perception</i> of low-level visual details, such as comparing the lengths of lines or navigating simple mazes. In particular, this failure mode persists in tasks about vector graphics—images composed purely of 2D objects and shapes. 
+            <b>Problem:</b> Current large multimodal models (LMMs) struggle to bridge the gap between low-level visual perception—focusing on shapes,
+            sizes and layouts—and high-level language reasoning involving semantics, events and logic. This limitation becomes evident in tasks requiring precise visual perception, such as comparing geometric properties or solving visual algorithmic reasoning problems. To study this failure mode, we focus on an important visual domain: vector graphics—images composed purely of 2D objects and shapes, which are prevalent in various LMM-based agent tasks in web, visual design, and OS environments. 
           </p>
           <p>
-            <b>Method:</b> To solve this challenge, we propose <b>Visually Descriptive Language Model (VDLM), a <i>text</i>-based <i>visual</i> reasoning framework about vector graphics</b>. VDLM leverages Scalable Vector Graphics (SVG) as a more precise initial perception of visual inputs.
-            <!-- and first uses an off-the-shelf raster-to-SVG algorithm for encoding.  -->
-            As existing language models cannot understand raw SVGs in a zero-shot setting, VDLM then bridges SVG with pretrained language models using a newly introduced, intermediate symbolic representation, <b>Primal Visual Description (PVD)</b>, which comprises primitive attributes (e.g., shape, position, measurement).
-            <!-- with their corresponding predicted values.  -->
-            By casting an image to a text-based representation, we can leverage the power of language models to learn alignment from SVG to visual primitives and generalize to unseen tasks and domains.
+            <b>Key research questions:</b> (1) how can we enable precise visual perception in LMMs? and (2) how can we facilitate high-level reasoning based on such low-level perceptions?
           </p>
           <p>
-            <b>Performance:</b> VDLM achieves stronger zero-shot performance compared to state-of-the-art LMMs, such as GPT-4V, in various low-level multimodal perception and reasoning tasks on vector graphics. VDLM also offers better interpretability due to its disentangled perception and reasoning processes.
+            <b>Method:</b> To accurately capture low-level visual details, we utilize Scalable Vector Graphics (SVG) for precise encoding of visual scenes. However, SVGs are not readily interpretable by LLMs or LMMs in a zero-shot manner. To address this challenge, we propose the <b>Visually Descriptive Language Model (VDLM)</b>, which introduces an intermediate textual representation called <b>Primal Visual Description (PVD)</b>. PVD translates SVGs into a text-based abstraction comprising primitive attributes (e.g., shape, position, measurement) along with their corresponding values. This abstraction is more structured and closer to natural language, allowing for direct interpretation by foundation models for zero-shot generalization to different reasoning tasks
+          </p>
+          <p>
+            <b>Performance:</b> Without any human-annotated data, empirical results demonstrate that VDLM leads to significant improvements in state-of-the-art LMMs, such as GPT-4o, across various low-level multimodal perception and reasoning tasks on vector graphics. VDLM also offers better interpretability due to its disentangled perception and reasoning processes.
           </p>
         </div>
         <figure>
@@ -232,25 +232,25 @@
                   type="video/mp4">
                 </video>
           <h2 class="subtitle has-text-centered">
-            VDLM zero-shot inference example on 2×2 Maze Solving task.
+            VDLM-txt zero-shot inference example on 2×2 Maze Solving task with text-only LLM reasoner.
           </h2>
         <br>
         <br>
         <h3 class="title is-4">Encoding images into SVG to preserve low-level details</h3>
         <div class="content has-text-justified">
           <p>
-            We leverage an off-the-shelf rule-based image-to-SVG parsing algorithm, <a href="https://github.com/visioncortex/vtracer">VTracer</a>, for converting any image into SVG without learning. This enables us to obtain an accurate initial perception of the input vector graphic images. However, we observe two key challenges when working with raw SVG representation. First, off-the-shelf LLMs, e.g., GPT-4, have limited zero-shot reasoning ability on SVG representation. Second, fine-tuning on task-specific ⟨SVG, question, answer⟩ pairs limits generalization to unseen tasks and domains. We discuss our approach for extracting intermediate representations below.
+            We leverage a rule-based image-to-SVG parsing algorithm, <a href="https://github.com/visioncortex/vtracer">VTracer</a>, for converting any image into SVG without learning. This enables us to obtain an accurate initial perception of the input vector graphic images. However, we observe two key challenges when working with raw SVG representation. First, off-the-shelf foundation models, e.g., GPT-4, have limited zero-shot reasoning ability on SVG representation. Second, fine-tuning on task-specific ⟨SVG, question, answer⟩ pairs limits generalization to unseen tasks and domains. We discuss our approach for extracting intermediate representations below.
           </p>
         </div>
         <!-- <h3 class="title is-4">Learning Alignment of SVG to Primal Visual Description with Language Models</h3> -->
-        <h3 class="title is-4">Learning intermediate symbolic representation to enable text-based reasoning</h3>
+        <h3 class="title is-4">Learning an intermediate symbolic representation as a bridge</h3>
         <div class="content has-text-justified">
           <figure id="pvd_ontology_img">
             <img src="static/images/pvd_ontology.png" alt="PVD ontology." class="pvd_ontology"/>
             <figcaption><b>Figure 2:</b> Ontology of the PVD primitives.</figcaption>
           </figure>
           <p>
-            We propose <b>Primal Visual Description (PVD)</b>, a higher level scene representation that bridges low-level SVG paths to more structured primitives required for reasoning. PVD is a text-based visual description that consists of a set of primitive geometry objects, e.g., circles, line segments. Each PVD element contains the primitives' attributes (e.g., color, shape, position, size) with corresponding predicted values (e.g., blue, circle, pixel coordinates of the center, length of the radius). See <a href="#pvd_ontology_img">Figure 2</a> for the ontology we defined. Notably, unlike raw SVG, <b>PVD is directly interpretable by state-of-the-art LLMs</b>, enabling zero-shot reasoning on downstream tasks.
+            We propose <b>Primal Visual Description (PVD)</b>, a higher-level abstraction that transforms low-level SVG paths to more structured primitives required for reasoning. PVD is a text-based visual description that consists of a set of primitive geometry objects, e.g., circles, line segments. Each PVD element contains the primitives' attributes (e.g., color, shape, position, size) with corresponding predicted values (e.g., blue, circle, pixel coordinates of the center, length of the radius). See <a href="#pvd_ontology_img">Figure 2</a> for the ontology we defined. Notably, unlike raw SVG, PVD is directly interpretable by state-of-the-art LLMs and LMMs, enabling zero-shot reasoning on downstream tasks.
           </p>
           <figure id="svg_to_pvd_model_img">
             <img src="static/images/svg-to-pvd-model.png" alt="SVG-to-PVD model." class="svg_to_pvd_model"/>
@@ -267,14 +267,15 @@
         <h3 class="title is-4">Zero-shot task generalization with off-the-shelf LLMs</h3>
         <div class="content has-text-justified">
           <p>
-            Given an <i>unseen</i> task, we first use our visual perception modules, as aformentioned, to generate a fully text-based visual description of the input vector graphics. 
-            We then leverage an off-the-shelf LLM, e.g., <a href="https://openai.com/research/gpt-4">GPT-4</a>, for interpreting the perception results and reasoning about task queries.
+            Given an unseen task, we first use our visual perception modules, as aformentioned, to generate a precise PVD perception of the input vector graphics. 
+            We input the perception result into the prompt along with the task-specific instructions, and then feed it into an inference-only LLM or LMM reasoner.
+            We explore two variants of VDLM, namely <b>VDLM-txt</b> and <b>VDLM-mm</b>, depending on the type of reasoner applied. VDLM-txt leverages a text-only LLM as the reasoner and solely uses PVD to represent the visual information, whereas VDLM-mm leverages an multimodal LMM as the reasoner, which can additionally take the original image as visual input.
             An example of the full input prompt and GPT-4 response of the 2×2 Maze Solving example can be viewed below.
           </p>
         </div>
         <div class="collapsible-section">
           <button class="button is-fullwidth toggle-section" aria-controls="mazeExample1">
-            <span>View Full Reasoning Results of the 2×2 Maze Solving Example</span>
+            <span>View Full Reasoning Results of the 2×2 Maze Solving Example from VDLM-txt with GPT-4</span>
             <span class="icon is-small">
               <i class="fas fa-angle-down" aria-hidden="true"></i>
             </span>
@@ -308,20 +309,29 @@
         <div class="content has-text-justified">
           <figure id="downstream_tasks_img">
             <img src="static/images/downstream_tasks.png" alt="downstream tasks." class="downstream_tasks"/>
-            <figcaption><b>Figure 4:</b> Our full evaluation benchmark, composed of 9 zero-shot tasks on vector graphics.</figcaption>
+            <figcaption><b>Figure 4:</b> Our full evaluation benchmark with a focus on <b>low-level visual reasoning</b> about vector graphics. We additionally include high-level reasoning tasks with rendered SVG images from VGBench-QA.
+            </figcaption>
           </figure>
           <p>
-            We construct an evaluation benchmark that comprises 9 tasks which cover important aspects of low-level visual perception and vision-language reasoning, including measurements, spatial relations, counting, logical reasoning, and complex reasoning problems. See <a href="#downstream_tasks_img">Figure 4</a> for the task examples.
+            We construct an evaluation benchmark that comprises 9 tasks which cover important aspects of low-level visual perception and vision-language reasoning, including measurements, spatial relations, counting, logical reasoning, and complex reasoning problems. See <a href="#downstream_tasks_img">Figure 4</a> for the task examples. We additionally include a set of high-level tasks from VGBench to investigate the impact of VDLM on semantic-centric reasoning, which rarely require precise perception of the locations and measurements of the primitives.
           </p>
         <h3 class="title is-4">Results</h3>
         <div class="content has-text-justified">
           <figure id="results_img">
             <img src="static/images/main_results.png" alt="results." class="results"/>
-            <figcaption><b>Figure 5:</b> Zero-shot accuracy on 9 tasks.</figcaption>
+            <figcaption><b>Figure 5:</b> Zero-shot accuracy on low-level visual reasoning tasks.</figcaption>
           </figure>
           <p>
-            VDLM outperforms both open- and closed-source state-of-the-art Large Multimodal Models, including <a href="https://arxiv.org/abs/2310.03744">LLaVA-1.5</a> and <a href="https://openai.com/research/gpt-4v-system-card">GPT-4V</a>, demonstrating the effectiveness of its text-based, disentangled framework in achieving precise low-level perception and reasoning.
+            VDLM-txt, even without access to the original image, outperforms strong LMMs such as <a href="https://openai.com/research/gpt-4v-system-card">GPT-4V</a>, highlighting the efficacy of the intermediate PVD representation for precise low-level perception and reasoning.
+            VDLM-mm significantly improves state-of-the-art LMMs, such as <a href="https://openai.com/index/gpt-4o-system-card/">GPT-4o</a>, on low-level reasoning tasks, while preserving their capabilities in high-level reasoning.
+            We observe that <a href="https://github.com/pipilurj/G-LLaVA">G-LLaVA</a>, a model demonstrating strong performance on geometric problems, such as MathVista, still struggles with understanding basic lines and angles, which are prerequisites for solving geometric math problems. This indicates that the QA performance on complex math problems does not necessarily reflect a faithful understanding of low-level visual concepts. 
+            <!-- VDLM outperforms both open- and closed-source state-of-the-art Large Multimodal Models, including <a href="https://arxiv.org/abs/2310.03744">LLaVA-1.5</a> and <a href="https://openai.com/research/gpt-4v-system-card">GPT-4V</a>, demonstrating the effectiveness of its text-based, disentangled framework in achieving precise low-level perception and reasoning. -->
             VDLM also outperforms previous visual programming methods, i.e., <a href="https://viper.cs.columbia.edu/">ViperGPT</a>, indicating that these models are limited by the capability of the vision-language processors, such as <a href="https://github.com/microsoft/GLIP">GLIP</a> and <a href="https://arxiv.org/abs/2301.12597">BLIP2</a>, especially in processing low-level primitives such as angles and shapes.
+          </p>
+          <h3 class="title is-4">Limitations</h3>
+          <p>
+            Although the PVD representation has already shown significant promise with a limited ontology and a fully synthesized training dataset, it is not
+            yet perfect when generalizing to diverse domains. In certain tasks, such as Shapeworld Spatial Reasoning, VDLM-mm brings negative impact to GPT-4o. The reason for this lies in the imperfect perception results from the SVG-to-PVD model. Future directions include building a more general PVD model that has a broader coverage of 2D concepts and can be extended to 3D and natural images. For detailed results and analysis, please refer to our <a href="https://arxiv.org/abs/2404.06479">paper</a>.
           </p>
   </div>
 </section>

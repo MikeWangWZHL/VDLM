@@ -1,5 +1,5 @@
 
-<h1 align="center"> Text-Based Reasoning About Vector Graphics </h1>
+<h1 align="center"> Visually Descriptive Language Model for Vector Graphics Reasoning </h1>
 
 <p align="center">
 <a href="https://mikewangwzhl.github.io/VDLM">🌐 Homepage</a>
@@ -18,7 +18,8 @@ We observe that current *large multimodal models (LMMs)* still struggle with see
 
 ![Teaser](figures/teaser.png)
 
-To solve this challenge, we propose **Visually Descriptive Language Model (VDLM)**, a text-based visual reasoning framework for vector graphics. VDLM operates on text-based visual descriptions—specifically, SVG representations and learned Primal Visual Descriptions (PVD), enabling zero-shot reasoning with an off-the-shelf LLM. We demonstrate that VDLM outperforms state-of-the-art large multimodal models, such as GPT-4V, across various multimodal reasoning tasks involving vector graphics. See our [paper](https://arxiv.org/abs/2404.06479) for more details.
+To solve this challenge, we propose **Visually Descriptive Language Model (VDLM)**, a visual reasoning framework that operates with intermediate text-
+based visual descriptions—SVG representations and learned Primal Visual Description, which can be directly integrated into existing LLMs and LMMs. We demonstrate that VDLM outperforms state-of-the-art large multimodal models, such as GPT-4V, across various multimodal reasoning tasks involving vector graphics. See our [paper](https://arxiv.org/abs/2404.06479) for more details.
 
 
 ![Overview](figures/overview.png)
@@ -61,24 +62,6 @@ To solve this challenge, we propose **Visually Descriptive Language Model (VDLM)
 
 - A detailed inference demo 🚀 can be found [here](demo.ipynb).
 
-<!-- - Run inference to obtain PVD perception results and prompts for reasoning. Example usage:
-    ```
-    python inference_perception.py \
-        --img_path demo_examples/image_inputs/lines_segments.png \
-        --question "How many line segments are there in the image? What's the total length of all the line segments in the image?" \
-        --output_root demo_examples/perception_output
-    ```
-
-    The output will be in `demo_examples/perception_output/{served_model_name}/{img_name}` containing:
-
-    - `input_img.png`: the input image
-    - `svg/`: a subdir containing the converted raw SVG file of the entire image, and individual SVG files with decomposed single paths ("path_*.svg"). 
-    - `output_perception/`:
-        - `responses.json`: a JSON file containing the PVD perception results
-        - `pred_all.png`: a visualization of the aggregated perception of the entire image
-        - `pred_path_*.png`: visualizations of the perception of each individual object
-    - `prompt_for_reasoning.txt`: prompt with the inserted perception result and the task instruction for feeding into an LLM, e.g., GPT-4.  -->
-
 ## 📊 Downstream Task Evaluation
 
 ### Downstream Task Data Download
@@ -91,17 +74,31 @@ bash scripts/perception/eval_perception.sh
 
 ### Run Reasoning: PVD + question -> answer
 
-- VDLM:
+- VDLM-mm:
+    - GPT-4o:
+        ```
+        bash scripts/reasoning/vdlm_mm_gpt4o_pvd.sh
+        ```
+    - GPT-4V:
+        ```
+        bash scripts/reasoning/vdlm_mm_gpt4v_pvd.sh
+        ```
+
+- VDLM-txt:
     - GPT-4 Chat API *without* Code Interpreter:
         ```
-        bash scripts/reasoning/gpt4_pvd.sh
+        bash scripts/reasoning/vdlm_txt_gpt4_pvd.sh
         ```
     - GPT-4 Assistant API *with* Code Interpreter:
         ```
-        bash scripts/reasoning/gpt4_assistant_pvd.sh
+        bash scripts/reasoning/vdlm_txt_gpt4_assistant_pvd.sh
         ```
     
 - Image-based Baselines:
+    - GPT-4o + Image input: 
+        ```
+        bash scripts/reasoning/gpt4o_image.sh
+        ```
     - GPT-4v + Image input: 
         ```
         bash scripts/reasoning/gpt4v_image.sh

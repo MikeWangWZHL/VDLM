@@ -51,7 +51,7 @@ def get_task_data(task_name, dataset_name, prompt_version='v1'):
     if input_type == "image":
         prompt_template = downstream_task_image_prompts[prompt_type]
         perception_data = None
-    elif input_type == "pvd":
+    elif "pvd" in input_type: # "pvd_image"
         prompt_template = downstream_task_pvd_prompts[prompt_type]
         perception_result_path = f"{PERCEPTION_RESULTS_DIR}/{task_name_short}/response.jsonl"
         print("IMPORTANT INFO: using perception result:", perception_result_path)
@@ -65,7 +65,7 @@ def get_task_data(task_name, dataset_name, prompt_version='v1'):
     prompts = []
     
     for item in eval_data:
-        if input_type == "image":
+        if "image" in input_type: # "image", "pvd_image"
             image_path = os.path.join(DATA_ROOT, item["image_path"])
             assert os.path.exists(image_path)
         else:
@@ -106,6 +106,12 @@ def get_task_data(task_name, dataset_name, prompt_version='v1'):
                 prompt = prompt_template.format(perception=perception_result, question=item["prompt"])
             else:
                 prompt = prompt_template.format(question=item["prompt"])
+        elif "vgbench_qa_svg" in task_name_short:
+            option_str = "\n".join(item['options'])
+            if perception_result is not None:
+                prompt = prompt_template.format(perception=perception_result, question=item["prompt"], options=option_str)
+            else:
+                prompt = prompt_template.format(question=item["prompt"], options=option_str)
 
         prompts.append(prompt)
 
@@ -358,6 +364,20 @@ def get_task_result_from_log(task_name, output_dir, acc_computation_rule = "stri
         
         # Heuristic mapping if the parsing is not successful
         if pred is not None:
+            if gt.upper() in ["A", "B", "C", "D"]:
+                # string matching for incorrectly parsed outputs
+                if pred not in ["A", "B", "C", "D"]:
+                    if "A" in pred:
+                        pred = "A"
+                    elif "B" in pred:
+                        pred = "B"
+                    elif "C" in pred:
+                        pred = "C"
+                    elif "D" in pred:
+                        pred = "D"
+                    else:
+                        pred = random.choice(["A", "B", "C", "D"])
+            
             if isinstance(pred, str):
                 pred = pred.lower()
 
@@ -425,6 +445,9 @@ def get_logs_pvd_downstream(model_name='gpt4', input_type="image", result_dir=".
         "geoclidean-2shot",
         "maze-solve-2x2",
         "maze_solve-3x3",
+        "vgbench_qa_svg_category",
+        "vgbench_qa_svg_color",
+        "vgbench_qa_svg_usage",
     ]:
         task_dir = os.path.join(result_dir, f"{task_name}__{input_type}__{model_name}")
         if os.path.exists(task_dir):
@@ -436,8 +459,8 @@ import argparse
 if __name__ == "__main__":
 
     parser = argparse.ArgumentParser(description='Process some integers.')
-    parser.add_argument('--model_name', type=str, default="gpt4", help="gpt4 | gpt4_assistant_code_interpreter | vipergpt-gpt4 | llava-v1.5-7b | llava-v1.5-13b")
-    parser.add_argument('--input_type', type=str, default="pvd", help="image | pvd")
+    parser.add_argument('--model_name', type=str, default="gpt4", help="gpt4 | gpt4v | gpt4o | gpt4_assistant_code_interpreter | vipergpt-gpt4 | llava-v1.5-7b | llava-v1.5-13b")
+    parser.add_argument('--input_type', type=str, default="pvd", help="image | pvd | image_pvd")
     parser.add_argument('--result_dir', type=str, default="./results/reasoning")
     args = parser.parse_args()
 

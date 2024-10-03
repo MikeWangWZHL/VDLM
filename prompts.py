@@ -136,6 +136,24 @@ Then, determine if the test example depicts the same concept as the reference ex
 You MUST provide your final answer, and the answer should follow this format: {{"answer": "yes" or "no"}}.
 '''
 
+dt_pvd__vgbench_qa = '''
+Given an image containing a SVG graphic, think step by step and answer the following question:
+{question}
+
+{options}
+
+------
+The following JSON contains an approximated reference perception of the image. Each object (potentially including the background) is represented by a list of geometric shapes. If the object contain multiple shapes, it is a composite object. The (x, y) coordinates are in pixels, and (0, 0) is the top-left corner of the image.
+
+--- reference perception ---
+{perception}
+------
+
+Note that the reference perception can be noisy. Refer to the reference perception when necessary for answering the question.
+
+You MUST provide your final answer, and the answer should follow this format: {{"answer": choose from "A", "B", "C", "D"}}
+'''
+
 downstream_task_pvd_prompts = {
     "length-comparison": dt_pvd__length_comparison,
     "acute-or-obtuse": dt_pvd__acute_or_obtuse,
@@ -144,7 +162,10 @@ downstream_task_pvd_prompts = {
     "shapeworld-superlative": dt_pvd__shapeworld_superlative,
     "maze": dt_pvd__maze,
     "nlvr": dt_pvd__nlvr,
-    "geoclidean": dt_pvd__geoclidean
+    "geoclidean": dt_pvd__geoclidean,
+    "vgbench_qa_svg_category": dt_pvd__vgbench_qa,
+    "vgbench_qa_svg_color": dt_pvd__vgbench_qa,
+    "vgbench_qa_svg_usage": dt_pvd__vgbench_qa
 }
 
 
@@ -190,6 +211,14 @@ Then, determine if the test example depicts the same concept as the reference ex
 You MUST provide your final answer, and the answer should follow this format: {{"answer": "yes" or "no"}}.
 '''
 
+dt_img__vgbench_qa = '''Given an image containing a SVG graphic, think step by step and answer the following question:
+{question}
+
+{options}
+
+You MUST provide your final answer, and the answer should follow this format: {{"answer": choose from "A", "B", "C", "D"}}
+'''
+
 downstream_task_image_prompts = {
     "length-comparison": dt_img__length_comparison,
     "acute-or-obtuse": dt_img__acute_or_obtuse,
@@ -198,7 +227,10 @@ downstream_task_image_prompts = {
     "shapeworld-superlative": dt_img__shapeworld,
     "maze": dt_img__maze,
     "nlvr": dt_img__nlvr,
-    "geoclidean": dt_img__geoclidean
+    "geoclidean": dt_img__geoclidean,
+    "vgbench_qa_svg_category": dt_img__vgbench_qa,
+    "vgbench_qa_svg_color": dt_img__vgbench_qa,
+    "vgbench_qa_svg_usage": dt_img__vgbench_qa
 }
 
 

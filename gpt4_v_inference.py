@@ -56,6 +56,8 @@ def main(args):
         model_name =  "gpt-4-turbo-preview"
     elif args.model_type == "gpt4v":
         model_name =  "gpt-4-vision-preview"
+    elif args.model_type == "gpt4o":
+        model_name =  "gpt-4o-2024-05-13"
     print("model_name:", model_name)
 
     if args.api_type == "chat_completion": # "chat_completion", "assistant_code_interpreter"
