@@ -173,13 +173,11 @@ Example usage:
 ## 📚 Citation
 
 ```bibtex
-@misc{wang2024textbased,
-      title={Text-Based Reasoning About Vector Graphics}, 
-      author={Zhenhailong Wang and Joy Hsu and Xingyao Wang and Kuan-Hao Huang and Manling Li and Jiajun Wu and Heng Ji},
-      year={2024},
-      eprint={2404.06479},
-      archivePrefix={arXiv},
-      primaryClass={cs.CL}
+@article{wang2024vdlm,
+  title={Visually Descriptive Language Model for Vector Graphics Reasoning},
+  author={Wang, Zhenhailong and Hsu, Joy and Wang, Xingyao and Huang, Kuan-Hao and Li, Manling and Wu, Jiajun and Ji, Heng},
+  journal={arXiv preprint arXiv:2404.06479},
+  year={2024}
 }
 ```
 
